@@ -1,0 +1,289 @@
+/* 기본 설정 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* 포스터 전체 */
+.poster {
+  width: min(96%, 90rem);
+  min-height: 85vh;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1.05fr 1fr;
+  grid-template-rows: 0.28fr 0.72fr 0.72fr;
+
+  grid-template-areas:
+    "year blank"
+    "title blue"
+    "caption event";
+
+  gap: clamp(0.3rem, 1vw, 1rem);
+  padding: clamp(0.3rem, 1vw, 1rem);
+
+  background-color: black;
+}
+
+/* 공통  */
+.poster section {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* 1. 빨간색 */
+.year-panel {
+  grid-area: year;
+  background-color: red;
+  padding: clamp(0.5rem, 1vw, 1.5rem);
+}
+
+.year-panel p {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: bold;
+}
+
+/* 2. 상단 흰색 */
+.blank-panel {
+  grid-area: blank;
+  background-color: white;
+}
+
+/* 3. 메인 타이틀 */
+.title-panel {
+  grid-area: title;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: clamp(0.7rem, 2vw, 2rem);
+  position: relative;
+}
+
+/* 레이어 겹침 */
+.edition-mark {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  font-weight: bold;
+}
+
+.title-content {
+  text-align: right;
+}
+
+.title-panel h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 5rem);
+  line-height: 0.95;
+}
+
+.title-panel h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  line-height: 1;
+}
+
+.subtitle {
+  margin: 0.5rem 0 0;
+  font-size: clamp(0.65rem, 1.2vw, 1rem);
+  font-weight: bold;
+}
+
+/* 4. 파란색 영역 */
+.blue-panel {
+  grid-area: blue;
+  background-color: #0645ff;
+
+  display: flex;
+  align-items: center;
+
+  padding: clamp(0.7rem, 2vw, 2rem);
+}
+
+.blue-panel h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1.2;
+}
+
+/* 5. 작품 설명 */
+.caption-panel {
+  grid-area: caption;
+  background-color: white;
+
+  display: flex;
+  align-items: flex-end;
+
+  padding: clamp(0.7rem, 2vw, 2rem);
+}
+
+.caption-panel h2 {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  line-height: 1.25;
+}
+
+/* 6. 노란색 전시 정보 */
+.event-panel {
+  grid-area: event;
+  background-color: #ffd000;
+
+  display: flex;
+  align-items: flex-start;
+
+  padding: clamp(0.7rem, 2vw, 2rem);
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.event-panel h2 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.event-panel p {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.7rem);
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+/* ==================================
+   TABLET
+   ================================== */
+
+@media (max-width: 900px) {
+  .poster {
+    width: min(96%, 55rem);
+    min-height: 95vh;
+
+    grid-template-columns: 1fr 0.85fr;
+    grid-template-rows: 0.2fr 0.75fr 0.85fr;
+  }
+
+  .title-panel h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .blue-panel h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+}
+
+/* ==================================
+   MOBILE
+   ================================== */
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .poster {
+    width: 100%;
+    min-height: auto;
+
+    grid-template-columns: minmax(0, 1fr);
+
+    grid-template-rows:
+      0.5fr
+      2fr
+      1.7fr
+      1.1fr;
+
+    grid-template-areas:
+      "year"
+      "title"
+      "blue"
+      "event";
+
+    gap: 0.4rem;
+    padding: 0.4rem;
+  }
+
+  /* 모바일에서는 연도 글자 숨기기 */
+  .year-panel {
+    min-height: clamp(1.5rem, 8vw, 3rem);
+  }
+
+  .year-panel p {
+    display: none;
+  }
+
+  /* 모바일에서는 상단 빈 공간 숨기기 */
+  .blank-panel {
+    display: none;
+  }
+
+  /* 제목 왼쪽 정렬 */
+  .title-panel {
+    min-height: 12rem;
+    justify-content: flex-start;
+    padding: 1rem;
+  }
+
+  .title-content {
+    text-align: left;
+  }
+
+  .title-panel h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .title-panel h2 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .subtitle {
+    text-align: right;
+    margin-top: 1rem;
+  }
+
+  /* 파란색 영역 */
+  .blue-panel {
+    min-height: 12rem;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .blue-panel h2 {
+    font-size: clamp(2.5rem, 11vw, 4rem);
+    line-height: 1.25;
+  }
+
+  /* 모바일에서는 작품 설명 숨기기 */
+  .caption-panel {
+    display: none;
+  }
+
+  /* 노란색 영역 */
+  .event-panel {
+    min-height: 8rem;
+    padding: 1rem;
+  }
+
+  .event-panel h2 {
+    font-size: clamp(1.3rem, 6vw, 2rem);
+  }
+
+  .event-panel p {
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
+  }
+}
